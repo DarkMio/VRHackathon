@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnableOnGrab : MonoBehaviour {
 
-	// Use this for initialization
+	public GameObject toEnable;
+	public VRTK.VRTK_InteractableObject toGrab;
+
+
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
