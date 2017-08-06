@@ -13,6 +13,11 @@ public class MirrorDudeController : MonoBehaviour
 
     List<IInteractable> interactablesInReach;
     
+    private void OnEnable()
+    {
+        if(interactablesInReach != null) interactablesInReach.Clear();
+    }
+
     private void Start()
     {
         Collider col = GetComponent<Collider>();
@@ -27,7 +32,6 @@ public class MirrorDudeController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Entered");
         IInteractable inter = col.GetComponent<IInteractable>();
         if (inter == null) return;
         inter.Press(true, this);

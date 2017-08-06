@@ -24,13 +24,15 @@ public class OurButton : MonoBehaviour, IInteractable
         if (value)
         {
             transform.localScale = _defaultScale * .9f;
-            GetComponent<Renderer>().material.color = _defaultColor - Color.white * .2f;
+            GetComponent<Renderer>().material.color = _defaultColor + Color.white;
+            Debug.Log("press");
             OnPress.Invoke();
         }
         else
         {
             transform.localScale = _defaultScale;
             GetComponent<Renderer>().material.color = _defaultColor;
+            Debug.Log("release");
             OnRelease.Invoke();
         }
         

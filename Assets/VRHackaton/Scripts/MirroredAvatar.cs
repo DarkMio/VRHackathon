@@ -40,7 +40,7 @@ public class MirroredAvatar : MonoBehaviour
 
     private void PositionBody()
     {
-        AvatarBody.position = AvatarHead.position + new Vector3(_bodyOffset, 0, 0);
+        AvatarBody.position = AvatarHead.position + new Vector3(0, _bodyOffset, 0);
         AvatarBody.rotation = new Quaternion(AvatarBody.rotation.x, AvatarHead.rotation.y, AvatarBody.rotation.z, AvatarBody.rotation.w);
     }
 
