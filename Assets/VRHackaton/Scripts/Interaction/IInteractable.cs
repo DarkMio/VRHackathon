@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void Press(bool value);
-    void Grab(bool value);
+    void Press(bool value, MirrorDudeController controller);
+    void Grab(bool value, MirrorDudeController controller);
 }

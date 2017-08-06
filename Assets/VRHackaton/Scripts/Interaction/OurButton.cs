@@ -6,33 +6,46 @@ using UnityEngine.Events;
 public class OurButton : MonoBehaviour, IInteractable
 {
     public UnityEvent OnPress, OnRelease;
-    
 
-    //private void Awake()
-    //{
-    //    Collider col = GetComponent<Collider>();
-    //    col.isTrigger = true;
-    //}
-    
+    private Vector3 _defaultScale;
+    private Color _defaultColor;
 
-    public void Press(bool value)
+    private void Awake()
+    {
+        Collider col = GetComponent<Collider>();
+        col.isTrigger = false;
+        _defaultScale = transform.localScale;
+        _defaultColor = GetComponent<Renderer>().material.color;
+    }
+
+
+    public void Press(bool value, MirrorDudeController controller)
     {
         if (value)
         {
+            transform.localScale = _defaultScale * .9f;
+            GetComponent<Renderer>().material.color = _defaultColor - Color.white * .2f;
             OnPress.Invoke();
         }
         else
         {
+            transform.localScale = _defaultScale;
+            GetComponent<Renderer>().material.color = _defaultColor;
             OnRelease.Invoke();
         }
         
     }
 
-    public void Grab(bool value)
+    public void Grab(bool value, MirrorDudeController controller)
     {
-        transform.localPosition += new Vector3
-            (0, value ? -0.02f : 0.02f, 0);
+        
     }
+
+    //public void Grab(bool value)
+    //{
+    //    transform.localPosition += new Vector3
+    //        (0, value ? -0.02f : 0.02f, 0);
+    //}
 
     //private void OnTriggerEnter(Collider col)
     //{

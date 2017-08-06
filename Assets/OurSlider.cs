@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
 public class OurSlider : MonoBehaviour, IInteractable
 {
-    public Vector3 moveDirection;
+    public bool xDirection, yDirection, zDirection;
     public float sliderLength;
+
+    public MirrorDudeController grabbedController{ get; private set; }
 
     private Transform _controllerInReach;
     private Transform _grabbedController;
 
     private Vector3 _ogPos;
+
+    private UnityEvent OnActivation;
 
     private void Awake()
     {
@@ -21,9 +24,15 @@ public class OurSlider : MonoBehaviour, IInteractable
         _ogPos = transform.localPosition;
     }
 
-    public void Grab(bool value)
+    private void Update()
     {
+        if (!grabbedController) return;
+        transform.position = 
+    }
 
+    public void Grab(bool value, MirrorDudeController controller)
+    {
+        grabbedController = value ? controller : null;
     }
     
     public void Press()
@@ -31,7 +40,7 @@ public class OurSlider : MonoBehaviour, IInteractable
         throw new NotImplementedException();
     }
 
-    public void Press(bool value)
+    public void Press(bool value, MirrorDudeController controller)
     {
         throw new NotImplementedException();
     }

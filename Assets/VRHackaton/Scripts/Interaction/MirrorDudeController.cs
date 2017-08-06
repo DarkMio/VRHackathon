@@ -30,7 +30,7 @@ public class MirrorDudeController : MonoBehaviour
         Debug.Log("Entered");
         IInteractable inter = col.GetComponent<IInteractable>();
         if (inter == null) return;
-        inter.Press(true);
+        inter.Press(true, this);
         interactablesInReach.Add(inter);
     }
 
@@ -40,7 +40,7 @@ public class MirrorDudeController : MonoBehaviour
         {
             foreach(IInteractable inter in interactablesInReach)
             {
-                inter.Grab(true);
+                inter.Grab(true, this);
             }
         }
     }
@@ -50,8 +50,8 @@ public class MirrorDudeController : MonoBehaviour
         IInteractable inter = col.GetComponent<IInteractable>();
         if (inter == null) return;
         if (!interactablesInReach.Contains(inter)) return;
-        inter.Grab(false);
-        inter.Press(false);
+        inter.Grab(false, this);
+        inter.Press(false, this);
         interactablesInReach.Remove(inter);
     }
 
