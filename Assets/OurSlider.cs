@@ -27,7 +27,7 @@ public class OurSlider : MonoBehaviour, IInteractable
     private void Update()
     {
         if (!grabbedController) return;
-        transform.position = 
+        //transform.position = 
     }
 
     public void Grab(bool value, MirrorDudeController controller)
