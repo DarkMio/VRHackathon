@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/VRHackaton/Scenes/Testing/blockScene.unity
+    guid: 474b454e51d797347b1b97259c07bfa3
