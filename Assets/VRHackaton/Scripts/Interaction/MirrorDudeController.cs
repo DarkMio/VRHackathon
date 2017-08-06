@@ -34,6 +34,7 @@ public class MirrorDudeController : MonoBehaviour
     {
         IInteractable inter = col.GetComponent<IInteractable>();
         if (inter == null) return;
+        SteamVR_Controller.Input(_trackedObjectIndex).TriggerHapticPulse(2000);
         inter.Press(true, this);
         interactablesInReach.Add(inter);
     }

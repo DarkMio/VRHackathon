@@ -5,33 +5,44 @@ using UnityEngine.Events;
 
 public class LevelRoom : MonoBehaviour
 {
+    public enum State
+    {
+        NotStarted,
+        InProgress,
+        Done
+    }
+
+    public State currentState { get; private set; }
+
     public UnityEvent OnLoad, OnFinish;
-    
+
 
     public void Awake()
     {
-        StartLevel();
+        currentState = State.NotStarted;
     }
 
 
     public void StartLevel()
     {
         OnLoad.Invoke();
+        currentState = State.InProgress;
     }
 
     public void FinishLevel()
     {
         OnFinish.Invoke();
+        currentState = State.Done;
     }
 
     public void RevealFront(Transform front)
     {
-        StartCoroutine(RevealFrontCoroutine(front, new Vector3(0, -2.3f, 0)));
+        StartCoroutine(RevealFrontCoroutine(front, new Vector3(0, -2.5f, 0)));
     }
 
     public void CloseFront(Transform front)
     {
-        StartCoroutine(RevealFrontCoroutine(front, new Vector3(0, 2.3f, 0)));
+        StartCoroutine(RevealFrontCoroutine(front, new Vector3(0, 2.5f, 0)));
     }
 
     private IEnumerator RevealFrontCoroutine(Transform front, Vector3 delta)

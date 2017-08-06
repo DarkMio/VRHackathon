@@ -10,6 +10,13 @@ public class OurButton : MonoBehaviour, IInteractable
     private Vector3 _defaultScale;
     private Color _defaultColor;
 
+    public float _deactivationDelay = .2f;
+
+    public bool _isActivated = false;
+    private bool _isPressed = false;
+    private float _releaseTime;
+
+
     private void Awake()
     {
         Collider col = GetComponent<Collider>();
@@ -18,25 +25,40 @@ public class OurButton : MonoBehaviour, IInteractable
         _defaultColor = GetComponent<Renderer>().material.color;
     }
 
+    private void Update()
+    {
+        if (_isPressed || !_isActivated) return;
+        if(Time.time - _releaseTime > _deactivationDelay)
+        {
+            transform.localScale = _defaultScale;
+            GetComponent<Renderer>().material.color = _defaultColor;
+            OnRelease.Invoke();
+            _isActivated = false;
+        }
+    }
+
 
     public void Press(bool value, MirrorDudeController controller)
     {
+        _isPressed = value;
+        _isActivated = true;
         if (value)
         {
             transform.localScale = _defaultScale * .9f;
-            GetComponent<Renderer>().material.color = _defaultColor + Color.white;
-            Debug.Log("press");
+            GetComponent<Renderer>().material.color = _defaultColor + Color.white * .5f;
             OnPress.Invoke();
         }
         else
         {
-            transform.localScale = _defaultScale;
-            GetComponent<Renderer>().material.color = _defaultColor;
-            Debug.Log("release");
-            OnRelease.Invoke();
+            _releaseTime = Time.time;
+            //transform.localScale = _defaultScale;
+            //GetComponent<Renderer>().material.color = _defaultColor;
+            //OnRelease.Invoke();
         }
         
     }
+
+
 
     public void Grab(bool value, MirrorDudeController controller)
     {

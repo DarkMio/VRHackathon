@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -59,6 +60,8 @@ public class LevelStateController : MonoBehaviour {
 	public float blinkRate;
 	public int blinkTimes;
 
+    public UnityEvent NextEvent, FailureEvent;
+
 	void Start () {
 		countdownRunning = false;
 		currentState = 1;
@@ -91,10 +94,21 @@ public class LevelStateController : MonoBehaviour {
 
 		buttons[currentState].material.color = activeButton;
 		buttons[currentState - 1].material.color = goodButton;
-		
-		vrtkButtons[currentState].enabled = true;
+        SetButtonInteraction(
+            buttons[currentState - 1].GetComponent<OurButton>(), true);
+        SetButtonInteraction(
+            buttons[currentState].GetComponent<OurButton>(), true);
+
+
+        vrtkButtons[currentState].enabled = true;
 		currentState ++;
 	}
+
+
+    public void SetButtonInteraction(OurButton button, bool goodButton)
+    {
+        button.OnPress = goodButton ? NextEvent : FailureEvent;
+    }
 
 	public void Failure() {
 		StartCoroutine(FailState());
