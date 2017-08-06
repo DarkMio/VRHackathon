@@ -26,17 +26,21 @@ public class MirroredAvatar : MonoBehaviour
 	
 	private void Update ()
 	{
-		SetMirroredPositionWithCurrentSettings(PlayerLeftHand.transform);
-		SetMirroredPositionWithCurrentSettings(PlayerRightHand.transform);
-		SetMirroredPositionWithCurrentSettings(AvatarHead);
+        MirrorPosition(AvatarLeftHand, PlayerLeftHand, MirrorX, MirrorY, MirrorZ);
+        MirrorPosition(AvatarHead, PlayerHead, MirrorX, false, MirrorZ);
+        MirrorPosition(AvatarRightHand, PlayerRightHand, MirrorX, MirrorY, MirrorZ);
+
+		//SetMirroredPositionWithCurrentSettings(PlayerLeftHand.transform);
+		//SetMirroredPositionWithCurrentSettings(PlayerRightHand.transform);
+		//SetMirroredPositionWithCurrentSettings(AvatarHead);
 	}
-	private void SetMirroredPositionWithCurrentSettings(Transform t)
-	{
-		//t.position = MirrorPosition(AvatarHead, PlayerHead,);
+	//private void SetMirroredPositionWithCurrentSettings(Transform t)
+	//{
+	//	//t.position = MirrorPosition(AvatarHead, PlayerHead,);
 
 
-		//t.position = GetMirroredPosition(t.position, MirrorPointPosition ,MirrorX, MirrorY,MirrorZ);
-	}
+	//	//t.position = GetMirroredPosition(t.position, MirrorPointPosition ,MirrorX, MirrorY,MirrorZ);
+	//}
 
 	//private Vector3 GetMirroredPosition(
 	//	Vector3 position, Vector3 mirrorPoint, 

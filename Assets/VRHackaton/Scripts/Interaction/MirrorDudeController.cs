@@ -15,6 +15,11 @@ public class MirrorDudeController : MonoBehaviour
     
     private void Start()
     {
+        Collider col = GetComponent<Collider>();
+        if (!col)
+        {
+            col.isTrigger = true;
+        }
         interactablesInReach = new List<IInteractable>();
         _trackedObjectIndex = (int)Controller.index;
         _device = SteamVR_Controller.Input(_trackedObjectIndex);

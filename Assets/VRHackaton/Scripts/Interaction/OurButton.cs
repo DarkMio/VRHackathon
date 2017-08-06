@@ -2,38 +2,39 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class OurButton : MonoBehaviour, IInteractable
 {
     public UnityEvent OnPress, OnRelease;
 
-    public bool Holdable;
 
-    public bool IsPressed { get; private set; }
 
-    private void Awake()
-    {
-        Collider col = GetComponent<Collider>();
-        col.isTrigger = true;
-    }
+    private void 
 
-    public void Reset()
-    {
-
-    }
+    //private void Awake()
+    //{
+    //    Collider col = GetComponent<Collider>();
+    //    col.isTrigger = true;
+    //}
+    
 
     public void Press(bool value)
     {
         if (value)
+        {
             OnPress.Invoke();
+        }
         else
+        {
             OnRelease.Invoke();
+        }
+        
     }
 
     public void Grab(bool value)
     {
         transform.localPosition += new Vector3
-            (0, IsPressed ? -0.02f : 0.02f, 0);
+            (0, value ? -0.02f : 0.02f, 0);
     }
 
     //private void OnTriggerEnter(Collider col)
