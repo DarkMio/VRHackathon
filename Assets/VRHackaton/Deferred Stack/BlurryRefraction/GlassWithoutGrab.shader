@@ -81,7 +81,7 @@ half4 frag (v2f i) : SV_Target
 	i.uvgrab.xy = offset * i.uvgrab.z + i.uvgrab.xy;
 
 	float4 othCol = tex2Dproj(_UnmodifiedTexture, UNITY_PROJ_COORD(i.uvgrab));
-	float4 blurCookie = tex2D(_MixCookie, i.uvmain);
+	float4 blurCookie = tex2D(_MixCookie, UNITY_PROJ_COORD(i.uvgrab));
 	half4 col = tex2Dproj (_GrabBlurTexture, UNITY_PROJ_COORD(i.uvgrab));
 	half4 tint = tex2D(_MainTex, i.uvmain);
 	col = lerp (col, tint, _TintAmt);
