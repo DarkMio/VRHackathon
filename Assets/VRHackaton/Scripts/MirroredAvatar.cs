@@ -132,7 +132,7 @@ public class MirroredAvatar : MonoBehaviour
             case Type.xyz:
                 return avatarColor[3];
             default:
-                return avatarColor[4];
+                return avatarColor[0];
         }
     }
 }
