@@ -7,6 +7,16 @@ public class MirroredAvatar : MonoBehaviour
 {
 	//public ControllerHand PlayerLeftHand, PlayerRightHand;
 
+    public enum Type
+    {
+        z,
+        xz,
+        yz,
+        xyz
+    }
+
+    public Type mirrorType;
+
 	public Transform 
 		PlayerHead, PlayerLeftHand, PlayerRightHand,
 		AvatarHead, AvatarRightHand, AvatarLeftHand, AvatarBody;
@@ -29,6 +39,27 @@ public class MirroredAvatar : MonoBehaviour
 
     private void Update ()
 	{
+
+        switch (mirrorType)
+        {
+            case Type.z:
+                SetMirrorFlags(false, false, true);
+                break;
+            case Type.xz:
+                SetMirrorFlags(true, false, true);
+                break;
+            case Type.yz:
+                SetMirrorFlags(false, true, true);
+                break;
+            case Type.xyz:
+                SetMirrorFlags(true, true, true);
+                break;
+            default:
+                SetMirrorFlags(MirrorX, MirrorY, MirrorZ);
+                break;
+        }
+
+
         MirrorPosition(AvatarLeftHand, PlayerLeftHand, MirrorX, MirrorY, MirrorZ);
         MirrorPosition(AvatarHead, PlayerHead, MirrorX, false, MirrorZ);
         MirrorPosition(AvatarRightHand, PlayerRightHand, MirrorX, MirrorY, MirrorZ);
@@ -37,6 +68,13 @@ public class MirroredAvatar : MonoBehaviour
 		//SetMirroredPositionWithCurrentSettings(PlayerRightHand.transform);
 		//SetMirroredPositionWithCurrentSettings(AvatarHead);
 	}
+
+    private void SetMirrorFlags(bool x, bool y, bool z)
+    {
+        MirrorX = x;
+        MirrorY = y;
+        MirrorZ = z;
+    }
 
     private void PositionBody()
     {
@@ -72,7 +110,7 @@ public class MirroredAvatar : MonoBehaviour
 				invertZ ? -t.position.z : t.position.z + 2.5f);
 
         mirror.rotation = new Quaternion(
-            invertX ? -t.rotation.x : -t.rotation.x,
+            invertX ? t.rotation.x : -t.rotation.x,
             invertY && t != PlayerHead ? -t.rotation.y : t.rotation.y,
             invertZ ? -t.rotation.z: t.rotation.z,
             t.rotation.w);
