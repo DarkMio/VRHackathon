@@ -6,10 +6,7 @@ using UnityEngine.Events;
 public class OurButton : MonoBehaviour, IInteractable
 {
     public UnityEvent OnPress, OnRelease;
-
-
-
-    private void 
+    
 
     //private void Awake()
     //{
