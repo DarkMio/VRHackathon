@@ -26,6 +26,8 @@ public class MirroredAvatar : MonoBehaviour
 
     public float _bodyOffset;
 
+    public Material[] avatarColor;
+
 
 
     //private void Start ()
@@ -116,4 +118,21 @@ public class MirroredAvatar : MonoBehaviour
             t.rotation.w);
 
 	}
+
+    public Material GetMaterial()
+    {
+        switch (mirrorType)
+        {
+            case Type.z:
+                return avatarColor[0];
+            case Type.xz:
+                return avatarColor[1];
+            case Type.yz:
+                return avatarColor[2];
+            case Type.xyz:
+                return avatarColor[3];
+            default:
+                return avatarColor[4];
+        }
+    }
 }
