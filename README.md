@@ -3,6 +3,6 @@ This repository contains our project **Clone Quest** from the **VRHackathon** at
 
 ## Aim of the game
 
-The aim of the game is to **Think Inverse** and solve quests with one or more clones as partner. The player is challenged by four really hard quests which kinda lead him to entangle his legs and arms to reach buttons, sliders and levers.
+The aim of the game is to **Think Inverse** and solve quests with one or more clones as partner. The player is challenged by  ̶f̶o̶u̶r̶ two really hard quests which kinda lead him to entangle his legs and arms to reach buttons, sliders and levers.
 
 ## Work will be continued asap. :pray: :video_game: :hankey: :heart:
