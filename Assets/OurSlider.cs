@@ -46,9 +46,11 @@ public class OurSlider : MonoBehaviour, IInteractable
 
     private void Update()
     {
-        if (!_grabbedController) return;
-        Vector3 controllerPos = _grabbedController.transform.position;
-        Vector3 currentPos = transform.position;
+        if (!_grabbedController)
+        {
+	        return;
+        }
+	    Vector3 controllerPos = _grabbedController.transform.position;
         switch (direction)
         {
             case SliderDirection.downToUp:
@@ -104,17 +106,15 @@ public class OurSlider : MonoBehaviour, IInteractable
                     controllerPos.z);
                 break;
         }
-        if(Vector3.Distance(transform.position, _ogPos) > sliderLength)
-        {
-            OnActivation.Invoke();
-            //_activated = true;
-            transform.position = _ogPos;
-            _grabbedController = null;
-            GetComponent<Renderer>().material.color = _defaultColor;
-            transform.localScale = _defaultScale;
-        }
-
-        //transform.position = 
+	    if (!(Vector3.Distance(transform.position, _ogPos) > sliderLength))
+	    {
+		    return;
+	    }
+	    OnActivation.Invoke();
+	    transform.position = _ogPos;
+	    _grabbedController = null;
+	    GetComponent<Renderer>().material.color = _defaultColor;
+	    transform.localScale = _defaultScale;
     }
 
     public void Grab(bool value, MirrorDudeController controller)
