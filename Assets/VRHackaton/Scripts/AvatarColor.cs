@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AvatarColor : MonoBehaviour {
+public class AvatarColor : MonoBehaviour
+{
 
-    public MirroredAvatar avatar;
+ //   public MirroredAvatar avatar;
 
-	// Use this for initialization
-	void Awake () {
-        GetComponent<MeshRenderer>().material = avatar.GetMaterial();
-    }
+	//// Use this for initialization
+	//void Awake () {
+ //       GetComponent<MeshRenderer>().material = avatar.GetMaterial();
+ //   }
 }
